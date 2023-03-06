@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Project description
+
+This is a web app made with React.js. It features various delicious Recipes fetched from spoonacular API. Browse, Search and read details about your desired recipe.
+
+# Getting Started 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
