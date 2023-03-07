@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 function Recipe() {
 
   const [details, setDetails] = useState({});
+  const [activeTab, setActiveTab] = useState("instructions");
 
   let params = useParams();
 
@@ -14,6 +15,7 @@ function Recipe() {
     const detailData = await data.json();
 
     setDetails(detailData);
+    console.log(detailData);
   };
 
   useEffect(() => {
@@ -29,8 +31,24 @@ function Recipe() {
       </div>
 
       <Info>
-        <Button>Instructions</Button>
-        <Button>Ingredients</Button>
+        <Button className={activeTab === "instructions" ? "active" : ""} onClick={() => setActiveTab("instructions")}>Instructions</Button>
+        <Button className={activeTab === "ingredients" ? "active" : ""} onClick={() => setActiveTab("ingredients")}>Ingredients</Button>
+        {activeTab === "instructions" && (
+          <div>
+            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+          </div>
+        )}
+
+        {activeTab === "ingredients" && (
+          <ul>
+            {details.extendedIngredients.map((ingridient) =>
+              <li key={ingridient.id}>{ingridient.original}</li>
+            )}
+          </ul>
+        )}
+
+
       </Info>
 
     </DetailWrapper>
@@ -50,6 +68,7 @@ const DetailWrapper = styled.div`
 
   h2{
     margin-bottom: 2rem;
+    max-width: 400px;
   }
 
   li{
@@ -69,7 +88,9 @@ const Button = styled.button`
     background: white;
     border: 2px solid black;
     margin-right: 2rem;
-    font-weight: 600;    
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2rem;
 
 `
 
