@@ -2,6 +2,9 @@
 
 This is a web app made with React.js. It features various delicious Recipes fetched from spoonacular API. Browse, Search and read details about your desired recipe.
 
+# Live
+https://delicious-react-recipe.netlify.app/
+
 # Getting Started 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
